@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lead architect blueprint for a secure, modern LMS platform." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Secure LMS Architecture Blueprint</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="hero__content container">
+          <div class="hero__text">
+            <p class="eyebrow">Lead Software Architecture Plan</p>
+            <h1>Secure &amp; Scalable LMS for Premium Course Delivery</h1>
+            <p class="lede">
+              A comprehensive blueprint for launching a high-security learning platform tailored to protect premium content while scaling with your expertise.
+            </p>
+            <div class="hero__cta">
+              <a class="button button--primary" href="#stack">Explore Stack</a>
+              <a class="button button--secondary" href="#security">Review Security</a>
+            </div>
+          </div>
+          <div class="hero__meta">
+            <dl>
+              <div>
+                <dt>Discipline</dt>
+                <dd id="discipline">Cybersecurity Specialist</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Minimalistic, piracy-resistant LMS</dd>
+              </div>
+              <div>
+                <dt>Release Strategy</dt>
+                <dd>Incremental, security-first delivery</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section id="overview" class="section container">
+          <div class="section__header">
+            <h2>Architectural Overview</h2>
+            <p>
+              The platform emphasises resilient infrastructure, modular development, and strict content protection. Each layer below highlights rationale, responsibilities, and hand-off points for engineering teams.
+            </p>
+          </div>
+          <div class="grid grid--cards">
+            <article class="card" data-section="frontend">
+              <h3>Frontend Strategy</h3>
+              <ul>
+                <li>React 18 with TypeScript and Vite for fast iteration.</li>
+                <li>Tailwind CSS with custom tokens for brand consistency.</li>
+                <li>Zustand for lightweight yet scalable state orchestration.</li>
+                <li>Component-driven routing using React Router and Suspense for streaming lessons.</li>
+              </ul>
+            </article>
+            <article class="card" data-section="backend">
+              <h3>Backend &amp; DevOps</h3>
+              <ul>
+                <li>Node.js 20 + NestJS for opinionated, testable REST + GraphQL hybrid.</li>
+                <li>PostgreSQL via Prisma ORM, partitioned for analytics-ready data.</li>
+                <li>Redis for session enforcement, caching signed URLs, and rate limiting.</li>
+                <li>AWS infrastructure: API Gateway, Fargate, CloudFront, S3 (encrypted), and KMS-managed secrets.</li>
+              </ul>
+            </article>
+            <article class="card" data-section="media">
+              <h3>Secure Media Delivery</h3>
+              <ul>
+                <li>Video hosted on AWS IVS or Mux with DRM (FairPlay/Widevine) integration.</li>
+                <li>Dynamic watermarking via Lambda@Edge injecting per-user overlays.</li>
+                <li>Signed URL distribution with geo/IP throttling to mitigate abuse.</li>
+                <li>Automated takedown workflow using fingerprinting (e.g., PallyCon Forensic Watermarking).</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="stack" class="section section--alt">
+          <div class="container">
+            <div class="section__header">
+              <h2>Recommended Technology Stack</h2>
+              <p>Technology selections balance developer velocity with hardened security controls.</p>
+            </div>
+            <div class="grid grid--two">
+              <div class="stack">
+                <h3>Core Stack</h3>
+                <ul>
+                  <li><strong>Frontend:</strong> React 18, Vite, TypeScript, Tailwind CSS, Zustand</li>
+                  <li><strong>Backend:</strong> NestJS on Node.js 20, REST + GraphQL endpoints</li>
+                  <li><strong>Database:</strong> PostgreSQL 15 with Prisma migrations</li>
+                  <li><strong>Media:</strong> Mux Video API with DRM &amp; signed playback URLs</li>
+                  <li><strong>Payments:</strong> Stripe Checkout and Billing portal</li>
+                  <li><strong>Deployment:</strong> AWS (Route53, CloudFront, S3, Fargate, RDS, Secrets Manager)</li>
+                  <li><strong>Observability:</strong> OpenTelemetry, Datadog dashboards, AWS GuardDuty alerts</li>
+                </ul>
+              </div>
+              <div class="stack">
+                <h3>Security Enhancements</h3>
+                <ul>
+                  <li>OWASP ASVS aligned threat modeling &amp; penetration testing</li>
+                  <li>Zero Trust network segmentation with AWS PrivateLink</li>
+                  <li>CI/CD with GitHub Actions, Snyk scanning, and Infrastructure as Code (Terraform)</li>
+                  <li>Automated dependency updates and SBOM generation (CycloneDX)</li>
+                  <li>Runtime protection via AWS WAF + Shield Advanced</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="database" class="section container">
+          <div class="section__header">
+            <h2>Database Schema</h2>
+            <p>Normalized schema ensures referential integrity, supports auditing, and scales for analytics.</p>
+          </div>
+          <div class="code-block">
+            <h3>PostgreSQL Schema</h3>
+            <pre><code class="language-sql">CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email CITEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL CHECK (role IN ('student', 'admin', 'instructor')),
+  full_name TEXT NOT NULL,
+  avatar_url TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE courses (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  slug TEXT NOT NULL UNIQUE,
+  title TEXT NOT NULL,
+  summary TEXT NOT NULL,
+  description TEXT,
+  price_cents INTEGER NOT NULL CHECK (price_cents &gt;= 0),
+  thumbnail_url TEXT,
+  status TEXT NOT NULL CHECK (status IN ('draft', 'published', 'archived')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE lessons (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  course_id UUID NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  order_index INTEGER NOT NULL,
+  video_asset_id TEXT,
+  reading_material JSONB,
+  duration_seconds INTEGER,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UNIQUE(course_id, order_index)
+);
+
+CREATE TABLE enrollments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  course_id UUID NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+  purchased_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  expires_at TIMESTAMPTZ,
+  UNIQUE (user_id, course_id)
+);
+
+CREATE TABLE lesson_progress (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  enrollment_id UUID NOT NULL REFERENCES enrollments(id) ON DELETE CASCADE,
+  lesson_id UUID NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
+  status TEXT NOT NULL CHECK (status IN ('not_started', 'in_progress', 'completed')),
+  completed_at TIMESTAMPTZ,
+  UNIQUE (enrollment_id, lesson_id)
+);</code></pre>
+          </div>
+        </section>
+
+        <section id="api" class="section section--alt">
+          <div class="container">
+            <div class="section__header">
+              <h2>API Blueprint</h2>
+              <p>REST-first endpoints with JWT authentication and RBAC gating.</p>
+            </div>
+            <div class="grid grid--two">
+              <div class="card card--outline">
+                <h3>Authentication &amp; Users</h3>
+                <ul>
+                  <li><strong>POST</strong> /api/auth/register – create account, returns JWT + refresh token.</li>
+                  <li><strong>POST</strong> /api/auth/login – verify credentials, enforce session policy.</li>
+                  <li><strong>POST</strong> /api/auth/refresh – rotates tokens, invalidates previous session.</li>
+                  <li><strong>POST</strong> /api/auth/logout – revokes session and Redis cache.</li>
+                </ul>
+                <pre><code class="language-json">POST /api/auth/login
+{
+  "email": "learner@example.com",
+  "password": "StrongP@ssw0rd"
+}
+
+HTTP 200
+{
+  "accessToken": "&lt;jwt&gt;",
+  "refreshToken": "&lt;jwt&gt;",
+  "user": {
+    "id": "b2c2...",
+    "fullName": "Learner Zero",
+    "role": "student"
+  }
+}</code></pre>
+              </div>
+              <div class="card card--outline">
+                <h3>Course Delivery</h3>
+                <ul>
+                  <li><strong>GET</strong> /api/courses – list catalog with filters &amp; pagination.</li>
+                  <li><strong>GET</strong> /api/courses/{courseId} – fetch course detail with modules.</li>
+                  <li><strong>GET</strong> /api/courses/{courseId}/lessons – secure lesson list.</li>
+                  <li><strong>POST</strong> /api/courses/{courseId}/lessons/{lessonId}/progress – update status.</li>
+                </ul>
+                <pre><code class="language-json">GET /api/courses/1a2b/lessons
+Authorization: Bearer &lt;jwt&gt;
+
+HTTP 200
+{
+  "course": {
+    "id": "1a2b",
+    "title": "Defensive Cybersecurity Foundations"
+  },
+  "lessons": [
+    {
+      "id": "l-101",
+      "title": "Welcome &amp; Threat Landscape",
+      "duration": 780,
+      "progress": "completed"
+    },
+    {
+      "id": "l-102",
+      "title": "Zero Trust Architecture",
+      "duration": 900,
+      "progress": "in_progress"
+    }
+  ]
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="security" class="section container">
+          <div class="section__header">
+            <h2>Security &amp; Anti-Piracy Toolkit</h2>
+            <p>Defense-in-depth strategy combining client-side hardening and server-side enforcement.</p>
+          </div>
+          <div class="grid grid--two">
+            <article class="card card--outline">
+              <h3>Client Hardening Snippets</h3>
+              <pre><code class="language-javascript">// Disable text selection &amp; right click on course pages
+const protectContent = () =&gt; {
+  const guarded = document.querySelectorAll('[data-guarded]');
+  guarded.forEach((node) =&gt; {
+    node.addEventListener('contextmenu', (event) =&gt; event.preventDefault());
+    node.addEventListener('selectstart', (event) =&gt; event.preventDefault());
+    node.addEventListener('copy', (event) =&gt; event.preventDefault());
+  });
+};
+
+document.addEventListener('DOMContentLoaded', protectContent);
+</code></pre>
+              <pre><code class="language-css">[data-guarded] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+</code></pre>
+            </article>
+            <article class="card card--outline">
+              <h3>Server Gatekeeping</h3>
+              <pre><code class="language-javascript">// NestJS guard for lesson access
+@Injectable()
+class LessonAccessGuard {
+  constructor(private readonly access: AccessService) {}
+
+  async canActivate(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+    const userId = request.user.id;
+    const { courseId, lessonId } = request.params;
+
+    const enrollment = await this.access.verifyEnrollment(userId, courseId);
+    if (!enrollment) throw new ForbiddenException('Enrollment required');
+
+    const allowed = await this.access.canStreamLesson({
+      userId,
+      lessonId,
+      ip: request.ip,
+      userAgent: request.headers['user-agent'],
+    });
+
+    if (!allowed) throw new ForbiddenException('Access denied');
+
+    request.context = { enrollment };
+    return true;
+  }
+}
+</code></pre>
+              <pre><code class="language-text">Single-session JWT flow:
+1. On login, generate access + refresh tokens and store a session fingerprint in Redis (session:{userId}).
+2. Existing fingerprints are invalidated, forcing logout on other devices.
+3. Each request guard validates the JWT signature and compares the embedded sessionId with Redis.
+4. Refresh endpoint rotates the sessionId and updates Redis atomically.
+5. Logout deletes the Redis session and revokes refresh token by pushing its jti into a denylist.</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section id="roadmap" class="section section--alt">
+          <div class="container">
+            <div class="section__header">
+              <h2>Delivery Roadmap</h2>
+              <p>Phased milestones aligning engineering efforts with go-to-market needs.</p>
+            </div>
+            <div class="timeline">
+              <div class="timeline__item">
+                <span class="timeline__label">Phase 1</span>
+                <h3>MVP Foundation (Weeks 1-3)</h3>
+                <p>Implement authentication, Stripe payments, initial course onboarding, and baseline DRM-enabled streaming.</p>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__label">Phase 2</span>
+                <h3>Security Hardening (Weeks 4-6)</h3>
+                <p>Enable forensic watermarking, add automated compliance checks, deploy WAF rules and observability dashboards.</p>
+              </div>
+              <div class="timeline__item">
+                <span class="timeline__label">Phase 3</span>
+                <h3>Growth &amp; Analytics (Weeks 7-10)</h3>
+                <p>Layer in cohort analytics, content recommendations, and integrations with CRM/marketing automation.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container footer__content">
+          <p>&copy; <span id="year"></span> Secure LMS Blueprint. All rights reserved.</p>
+          <nav class="footer__nav">
+            <a href="#overview">Overview</a>
+            <a href="#database">Database</a>
+            <a href="#api">API</a>
+            <a href="#security">Security</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
