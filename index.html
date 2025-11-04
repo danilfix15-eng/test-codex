@@ -1,340 +1,404 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Lead architect blueprint for a secure, modern LMS platform." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Современная платформа по OSINT-разведке: инструменты, методологии, аналитика и обучение." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
-    <title>Secure LMS Architecture Blueprint</title>
+    <title>OSINT Nova — Центр открытой разведки</title>
   </head>
   <body>
     <div class="page">
-      <header class="hero">
-        <div class="hero__content container">
-          <div class="hero__text">
-            <p class="eyebrow">Lead Software Architecture Plan</p>
-            <h1>Secure &amp; Scalable LMS for Premium Course Delivery</h1>
-            <p class="lede">
-              A comprehensive blueprint for launching a high-security learning platform tailored to protect premium content while scaling with your expertise.
-            </p>
-            <div class="hero__cta">
-              <a class="button button--primary" href="#stack">Explore Stack</a>
-              <a class="button button--secondary" href="#security">Review Security</a>
+      <header class="site-header">
+        <div class="container site-header__inner">
+          <a class="brand" href="#hero" aria-label="OSINT Nova">
+            <span class="brand__mark">◎</span>
+            <span class="brand__text">OSINT Nova</span>
+          </a>
+          <nav class="nav" aria-label="Основная навигация">
+            <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <div class="nav__links" id="nav-menu">
+              <a href="#hero">Главная</a>
+              <a href="#focus">Направления</a>
+              <a href="#frameworks">Фреймворки</a>
+              <a href="#analytics">Аналитика</a>
+              <a href="#cases">Кейсы</a>
+              <a href="#contacts">Контакты</a>
             </div>
-          </div>
-          <div class="hero__meta">
-            <dl>
-              <div>
-                <dt>Discipline</dt>
-                <dd id="discipline">Cybersecurity Specialist</dd>
-              </div>
-              <div>
-                <dt>Focus</dt>
-                <dd>Minimalistic, piracy-resistant LMS</dd>
-              </div>
-              <div>
-                <dt>Release Strategy</dt>
-                <dd>Incremental, security-first delivery</dd>
-              </div>
-            </dl>
-          </div>
+          </nav>
+          <a class="button button--ghost" href="#contacts">Получить аудит</a>
         </div>
       </header>
 
       <main>
-        <section id="overview" class="section container">
-          <div class="section__header">
-            <h2>Architectural Overview</h2>
-            <p>
-              The platform emphasises resilient infrastructure, modular development, and strict content protection. Each layer below highlights rationale, responsibilities, and hand-off points for engineering teams.
-            </p>
-          </div>
-          <div class="grid grid--cards">
-            <article class="card" data-section="frontend">
-              <h3>Frontend Strategy</h3>
-              <ul>
-                <li>React 18 with TypeScript and Vite for fast iteration.</li>
-                <li>Tailwind CSS with custom tokens for brand consistency.</li>
-                <li>Zustand for lightweight yet scalable state orchestration.</li>
-                <li>Component-driven routing using React Router and Suspense for streaming lessons.</li>
-              </ul>
-            </article>
-            <article class="card" data-section="backend">
-              <h3>Backend &amp; DevOps</h3>
-              <ul>
-                <li>Node.js 20 + NestJS for opinionated, testable REST + GraphQL hybrid.</li>
-                <li>PostgreSQL via Prisma ORM, partitioned for analytics-ready data.</li>
-                <li>Redis for session enforcement, caching signed URLs, and rate limiting.</li>
-                <li>AWS infrastructure: API Gateway, Fargate, CloudFront, S3 (encrypted), and KMS-managed secrets.</li>
-              </ul>
-            </article>
-            <article class="card" data-section="media">
-              <h3>Secure Media Delivery</h3>
-              <ul>
-                <li>Video hosted on AWS IVS or Mux with DRM (FairPlay/Widevine) integration.</li>
-                <li>Dynamic watermarking via Lambda@Edge injecting per-user overlays.</li>
-                <li>Signed URL distribution with geo/IP throttling to mitigate abuse.</li>
-                <li>Automated takedown workflow using fingerprinting (e.g., PallyCon Forensic Watermarking).</li>
-              </ul>
-            </article>
+        <section id="hero" class="hero">
+          <div class="container hero__content">
+            <div class="hero__text">
+              <p class="eyebrow">Центр OSINT-разведки нового поколения</p>
+              <h1>Повышаем прозрачность и скорость принятия решений</h1>
+              <p class="lede">
+                Собираем, анализируем и визуализируем открытые данные для кибербезопасности, конкурентной разведки и кризисных операций.
+              </p>
+              <div class="hero__cta">
+                <a class="button button--primary" href="#focus">Смотреть возможности</a>
+                <a class="button button--secondary" href="#newsletter">Подписаться на дайджест</a>
+              </div>
+              <dl class="hero__metrics">
+                <div>
+                  <dt>24/7</dt>
+                  <dd>живые панели мониторинга</dd>
+                </div>
+                <div>
+                  <dt>180+</dt>
+                  <dd>источников в постоянном трекинге</dd>
+                </div>
+                <div>
+                  <dt>15 минут</dt>
+                  <dd>до выпуска аналитического дайджеста</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="hero__panel">
+              <div class="hero__card">
+                <h2>Мгновенная картина риска</h2>
+                <ul>
+                  <li>
+                    <span>🔎</span>
+                    <div>
+                      <strong>Investigate</strong>
+                      <p>Корреляция фактов из реестров, соцсетей, даркнета и СМИ.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span>🛰️</span>
+                    <div>
+                      <strong>Map</strong>
+                      <p>Геопривязка событий по спутниковым снимкам и метеоданным.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span>🧠</span>
+                    <div>
+                      <strong>Predict</strong>
+                      <p>Модели на графах знаний выявляют скрытые связи и сценарии.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="stack" class="section section--alt">
+        <section id="focus" class="section">
           <div class="container">
             <div class="section__header">
-              <h2>Recommended Technology Stack</h2>
-              <p>Technology selections balance developer velocity with hardened security controls.</p>
+              <h2>Что мы отслеживаем</h2>
+              <p>
+                Информационные поля постоянно меняются. Мы поддерживаем актуальность за счет автоматизации сбора, верификации и анализа сигналов.
+              </p>
             </div>
-            <div class="grid grid--two">
-              <div class="stack">
-                <h3>Core Stack</h3>
+            <div class="grid grid--cards">
+              <article class="card">
+                <h3>Киберугрозы</h3>
+                <p>Дорожные карты кибератак, утечки данных, новые эксплойты и активность группировок.</p>
                 <ul>
-                  <li><strong>Frontend:</strong> React 18, Vite, TypeScript, Tailwind CSS, Zustand</li>
-                  <li><strong>Backend:</strong> NestJS on Node.js 20, REST + GraphQL endpoints</li>
-                  <li><strong>Database:</strong> PostgreSQL 15 with Prisma migrations</li>
-                  <li><strong>Media:</strong> Mux Video API with DRM &amp; signed playback URLs</li>
-                  <li><strong>Payments:</strong> Stripe Checkout and Billing portal</li>
-                  <li><strong>Deployment:</strong> AWS (Route53, CloudFront, S3, Fargate, RDS, Secrets Manager)</li>
-                  <li><strong>Observability:</strong> OpenTelemetry, Datadog dashboards, AWS GuardDuty alerts</li>
+                  <li>Dark Web сканирование и TOR релеи</li>
+                  <li>Аллерты по CVE и Zero-Day</li>
+                  <li>Анализ тактик по MITRE ATT&amp;CK</li>
                 </ul>
-              </div>
-              <div class="stack">
-                <h3>Security Enhancements</h3>
+              </article>
+              <article class="card">
+                <h3>Финансовые риски</h3>
+                <p>Транзакции из открытых реестров, судебные разбирательства, рейтинги контрагентов.</p>
                 <ul>
-                  <li>OWASP ASVS aligned threat modeling &amp; penetration testing</li>
-                  <li>Zero Trust network segmentation with AWS PrivateLink</li>
-                  <li>CI/CD with GitHub Actions, Snyk scanning, and Infrastructure as Code (Terraform)</li>
-                  <li>Automated dependency updates and SBOM generation (CycloneDX)</li>
-                  <li>Runtime protection via AWS WAF + Shield Advanced</li>
+                  <li>OpenCorporates, SEC, ЕГРЮЛ</li>
+                  <li>Sanctions Explorer и PEP-листы</li>
+                  <li>ESG-рейтинги и негативные новости</li>
                 </ul>
-              </div>
+              </article>
+              <article class="card">
+                <h3>Социальная динамика</h3>
+                <p>Тренды в соцсетях, телеграм-каналах, визуальный контент и информационные кампании.</p>
+                <ul>
+                  <li>Семантические карты дискурса</li>
+                  <li>Видеоверсия, EXIF и геометки</li>
+                  <li>Алгоритмический поиск ботов</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Кризисный мониторинг</h3>
+                <p>Аварии, природные катастрофы, протесты и гуманитарные риски в режиме реального времени.</p>
+                <ul>
+                  <li>Спутниковые снимки Planet &amp; Sentinel</li>
+                  <li>Системы 911, ADS-B, AIS</li>
+                  <li>Обогащение данными о погоде и логистике</li>
+                </ul>
+              </article>
             </div>
           </div>
         </section>
 
-        <section id="database" class="section container">
-          <div class="section__header">
-            <h2>Database Schema</h2>
-            <p>Normalized schema ensures referential integrity, supports auditing, and scales for analytics.</p>
-          </div>
-          <div class="code-block">
-            <h3>PostgreSQL Schema</h3>
-            <pre><code class="language-sql">CREATE TABLE users (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email CITEXT NOT NULL UNIQUE,
-  password_hash TEXT NOT NULL,
-  role TEXT NOT NULL CHECK (role IN ('student', 'admin', 'instructor')),
-  full_name TEXT NOT NULL,
-  avatar_url TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
-CREATE TABLE courses (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug TEXT NOT NULL UNIQUE,
-  title TEXT NOT NULL,
-  summary TEXT NOT NULL,
-  description TEXT,
-  price_cents INTEGER NOT NULL CHECK (price_cents &gt;= 0),
-  thumbnail_url TEXT,
-  status TEXT NOT NULL CHECK (status IN ('draft', 'published', 'archived')),
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
-CREATE TABLE lessons (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  course_id UUID NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
-  title TEXT NOT NULL,
-  order_index INTEGER NOT NULL,
-  video_asset_id TEXT,
-  reading_material JSONB,
-  duration_seconds INTEGER,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  UNIQUE(course_id, order_index)
-);
-
-CREATE TABLE enrollments (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  course_id UUID NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
-  purchased_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  expires_at TIMESTAMPTZ,
-  UNIQUE (user_id, course_id)
-);
-
-CREATE TABLE lesson_progress (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  enrollment_id UUID NOT NULL REFERENCES enrollments(id) ON DELETE CASCADE,
-  lesson_id UUID NOT NULL REFERENCES lessons(id) ON DELETE CASCADE,
-  status TEXT NOT NULL CHECK (status IN ('not_started', 'in_progress', 'completed')),
-  completed_at TIMESTAMPTZ,
-  UNIQUE (enrollment_id, lesson_id)
-);</code></pre>
-          </div>
-        </section>
-
-        <section id="api" class="section section--alt">
+        <section id="frameworks" class="section section--alt">
           <div class="container">
             <div class="section__header">
-              <h2>API Blueprint</h2>
-              <p>REST-first endpoints with JWT authentication and RBAC gating.</p>
+              <h2>Фреймворки работы с открытыми источниками</h2>
+              <p>Стандартизированные процедуры гарантируют воспроизводимость и юридическую чистоту данных.</p>
             </div>
-            <div class="grid grid--two">
-              <div class="card card--outline">
-                <h3>Authentication &amp; Users</h3>
-                <ul>
-                  <li><strong>POST</strong> /api/auth/register – create account, returns JWT + refresh token.</li>
-                  <li><strong>POST</strong> /api/auth/login – verify credentials, enforce session policy.</li>
-                  <li><strong>POST</strong> /api/auth/refresh – rotates tokens, invalidates previous session.</li>
-                  <li><strong>POST</strong> /api/auth/logout – revokes session and Redis cache.</li>
-                </ul>
-                <pre><code class="language-json">POST /api/auth/login
-{
-  "email": "learner@example.com",
-  "password": "StrongP@ssw0rd"
-}
-
-HTTP 200
-{
-  "accessToken": "&lt;jwt&gt;",
-  "refreshToken": "&lt;jwt&gt;",
-  "user": {
-    "id": "b2c2...",
-    "fullName": "Learner Zero",
-    "role": "student"
-  }
-}</code></pre>
-              </div>
-              <div class="card card--outline">
-                <h3>Course Delivery</h3>
-                <ul>
-                  <li><strong>GET</strong> /api/courses – list catalog with filters &amp; pagination.</li>
-                  <li><strong>GET</strong> /api/courses/{courseId} – fetch course detail with modules.</li>
-                  <li><strong>GET</strong> /api/courses/{courseId}/lessons – secure lesson list.</li>
-                  <li><strong>POST</strong> /api/courses/{courseId}/lessons/{lessonId}/progress – update status.</li>
-                </ul>
-                <pre><code class="language-json">GET /api/courses/1a2b/lessons
-Authorization: Bearer &lt;jwt&gt;
-
-HTTP 200
-{
-  "course": {
-    "id": "1a2b",
-    "title": "Defensive Cybersecurity Foundations"
-  },
-  "lessons": [
-    {
-      "id": "l-101",
-      "title": "Welcome &amp; Threat Landscape",
-      "duration": 780,
-      "progress": "completed"
-    },
-    {
-      "id": "l-102",
-      "title": "Zero Trust Architecture",
-      "duration": 900,
-      "progress": "in_progress"
-    }
-  ]
-}</code></pre>
-              </div>
+            <div class="tabs" role="tablist" aria-label="OSINT фреймворки">
+              <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-recon" id="tab-recon-button">Recon</button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-investigate" id="tab-investigate-button">Investigate</button>
+              <button class="tab" role="tab" aria-selected="false" aria-controls="tab-analyze" id="tab-analyze-button">Analyze</button>
+            </div>
+            <div class="tabs__content">
+              <article class="tab-panel is-active" id="tab-recon" role="tabpanel" aria-labelledby="tab-recon-button">
+                <h3>Recon — подготовка и сбор данных</h3>
+                <p>
+                  Формируем карту источников, проверяем юридические рамки, настраиваем сенсоры и хранилища. Выявляем ключевые запросы и критерии релевантности.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">RSS/Atom агрегация</span>
+                  <span class="pill">API-интеграции</span>
+                  <span class="pill">Парсинг &amp; Scraping</span>
+                  <span class="pill">Image/Video Capture</span>
+                </div>
+              </article>
+              <article class="tab-panel" id="tab-investigate" role="tabpanel" aria-labelledby="tab-investigate-button">
+                <h3>Investigate — корреляция и верификация</h3>
+                <p>
+                  Связываем сущности через графы, применяем машинное обучение для классификации событий, проверяем достоверность сигналов и отсеиваем шум.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">Entity Resolution</span>
+                  <span class="pill">Face &amp; Object Recognition</span>
+                  <span class="pill">GeoINT подтверждение</span>
+                  <span class="pill">Наблюдение за активами</span>
+                </div>
+              </article>
+              <article class="tab-panel" id="tab-analyze" role="tabpanel" aria-labelledby="tab-analyze-button">
+                <h3>Analyze — представление и отчетность</h3>
+                <p>
+                  Создаем интерактивные панели, автоматизируем подготовку отчетов, запускаем алерты и рекомендации для стратегических и оперативных команд.
+                </p>
+                <div class="pill-list">
+                  <span class="pill">Graph Analytics</span>
+                  <span class="pill">Auto Briefings</span>
+                  <span class="pill">Storytelling Maps</span>
+                  <span class="pill">API &amp; Webhooks</span>
+                </div>
+              </article>
             </div>
           </div>
         </section>
 
-        <section id="security" class="section container">
-          <div class="section__header">
-            <h2>Security &amp; Anti-Piracy Toolkit</h2>
-            <p>Defense-in-depth strategy combining client-side hardening and server-side enforcement.</p>
-          </div>
-          <div class="grid grid--two">
-            <article class="card card--outline">
-              <h3>Client Hardening Snippets</h3>
-              <pre><code class="language-javascript">// Disable text selection &amp; right click on course pages
-const protectContent = () =&gt; {
-  const guarded = document.querySelectorAll('[data-guarded]');
-  guarded.forEach((node) =&gt; {
-    node.addEventListener('contextmenu', (event) =&gt; event.preventDefault());
-    node.addEventListener('selectstart', (event) =&gt; event.preventDefault());
-    node.addEventListener('copy', (event) =&gt; event.preventDefault());
-  });
-};
-
-document.addEventListener('DOMContentLoaded', protectContent);
-</code></pre>
-              <pre><code class="language-css">[data-guarded] {
-  user-select: none;
-  -webkit-user-select: none;
-}
-</code></pre>
-            </article>
-            <article class="card card--outline">
-              <h3>Server Gatekeeping</h3>
-              <pre><code class="language-javascript">// NestJS guard for lesson access
-@Injectable()
-class LessonAccessGuard {
-  constructor(private readonly access: AccessService) {}
-
-  async canActivate(context: ExecutionContext) {
-    const request = context.switchToHttp().getRequest();
-    const userId = request.user.id;
-    const { courseId, lessonId } = request.params;
-
-    const enrollment = await this.access.verifyEnrollment(userId, courseId);
-    if (!enrollment) throw new ForbiddenException('Enrollment required');
-
-    const allowed = await this.access.canStreamLesson({
-      userId,
-      lessonId,
-      ip: request.ip,
-      userAgent: request.headers['user-agent'],
-    });
-
-    if (!allowed) throw new ForbiddenException('Access denied');
-
-    request.context = { enrollment };
-    return true;
-  }
-}
-</code></pre>
-              <pre><code class="language-text">Single-session JWT flow:
-1. On login, generate access + refresh tokens and store a session fingerprint in Redis (session:{userId}).
-2. Existing fingerprints are invalidated, forcing logout on other devices.
-3. Each request guard validates the JWT signature and compares the embedded sessionId with Redis.
-4. Refresh endpoint rotates the sessionId and updates Redis atomically.
-5. Logout deletes the Redis session and revokes refresh token by pushing its jti into a denylist.</code></pre>
-            </article>
-          </div>
-        </section>
-
-        <section id="roadmap" class="section section--alt">
+        <section id="radar" class="section">
           <div class="container">
             <div class="section__header">
-              <h2>Delivery Roadmap</h2>
-              <p>Phased milestones aligning engineering efforts with go-to-market needs.</p>
+              <h2>Радар наблюдений</h2>
+              <p>Каждый сигнал проходит ручную валидацию аналитиком и сохраняется в knowledge graph для последующих проверок.</p>
+            </div>
+            <div class="grid grid--split">
+              <div class="table-card" role="region" aria-live="polite">
+                <header>
+                  <h3>Текущие сигналы</h3>
+                  <span class="badge">обновлено 5 мин назад</span>
+                </header>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Источник</th>
+                      <th>Событие</th>
+                      <th>Риск</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>DarkTracer</td>
+                      <td>Утечка учетных записей DevOps-провайдера</td>
+                      <td><span class="risk risk--high">Высокий</span></td>
+                    </tr>
+                    <tr>
+                      <td>FlightRadar24</td>
+                      <td>Необычные маршруты в районе Балкан</td>
+                      <td><span class="risk risk--medium">Средний</span></td>
+                    </tr>
+                    <tr>
+                      <td>Telegram</td>
+                      <td>Координация фишинговой рассылки</td>
+                      <td><span class="risk risk--high">Высокий</span></td>
+                    </tr>
+                    <tr>
+                      <td>PlanetScope</td>
+                      <td>Скопление техники на складской территории</td>
+                      <td><span class="risk risk--low">Низкий</span></td>
+                    </tr>
+                    <tr>
+                      <td>GitHub</td>
+                      <td>Публикация PoC для свежего CVE</td>
+                      <td><span class="risk risk--medium">Средний</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="insight-card">
+                <h3>Ключевые инсайты недели</h3>
+                <ul>
+                  <li>Снижение активности по ransomware на 12%, рост фишинговых наборов в даркнете.</li>
+                  <li>Расширение санкционных списков ЕС подтолкнуло новые схемы обхода через третьи страны.</li>
+                  <li>Протестные настроения усиливаются в мегаполисах, пик публикаций ожидается через 48 часов.</li>
+                </ul>
+                <a class="button button--link" href="#cases">Перейти к кейсам →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="analytics" class="section section--alt">
+          <div class="container">
+            <div class="section__header">
+              <h2>Метрики и визуализации</h2>
+              <p>Динамические панели позволяют мгновенно оценить охват источников и распределение кейсов.</p>
+            </div>
+            <div class="grid grid--charts">
+              <article class="chart-card">
+                <header>
+                  <h3>Покрытие источников по неделям</h3>
+                  <span class="chart-card__meta">Автообновление каждые 15 мин</span>
+                </header>
+                <canvas id="coverage-chart" aria-label="График покрытия источников" role="img"></canvas>
+              </article>
+              <article class="chart-card">
+                <header>
+                  <h3>Структура расследований</h3>
+                  <span class="chart-card__meta">По завершенным кейсам за квартал</span>
+                </header>
+                <canvas id="cases-chart" aria-label="Диаграмма расследований" role="img"></canvas>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="newsletter" class="section">
+          <div class="container">
+            <div class="newsletter">
+              <div class="newsletter__text">
+                <h2>Еженедельный OSINT-дайджест</h2>
+                <p>Инфополя, инсайты и рекомендации к действиям. Только проверенные данные и аналитика.</p>
+              </div>
+              <form class="newsletter__form" action="#" method="post">
+                <label class="sr-only" for="newsletter-email">Email</label>
+                <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" required />
+                <button class="button button--primary" type="submit">Подписаться</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="cases" class="section section--alt">
+          <div class="container">
+            <div class="section__header">
+              <h2>Кейсы &amp; результаты</h2>
+              <p>OSINT Nova поддерживает команды безопасности, корпоративной разведки и СМИ во всем мире.</p>
             </div>
             <div class="timeline">
               <div class="timeline__item">
-                <span class="timeline__label">Phase 1</span>
-                <h3>MVP Foundation (Weeks 1-3)</h3>
-                <p>Implement authentication, Stripe payments, initial course onboarding, and baseline DRM-enabled streaming.</p>
+                <span class="timeline__label">FinTech · 2024</span>
+                <h3>Пресечение мошенничества с криптовалютой</h3>
+                <p>Выявили сеть микшеров и OTC-площадок, предотвратили вывод $3.1 млн, подготовили доказательную базу для регулятора.</p>
               </div>
               <div class="timeline__item">
-                <span class="timeline__label">Phase 2</span>
-                <h3>Security Hardening (Weeks 4-6)</h3>
-                <p>Enable forensic watermarking, add automated compliance checks, deploy WAF rules and observability dashboards.</p>
+                <span class="timeline__label">Energy · 2023</span>
+                <h3>Анализ протестной активности</h3>
+                <p>Собрали 42 000 публикаций, построили карту координаторов, предложили сценарии реагирования для службы безопасности.</p>
               </div>
               <div class="timeline__item">
-                <span class="timeline__label">Phase 3</span>
-                <h3>Growth &amp; Analytics (Weeks 7-10)</h3>
-                <p>Layer in cohort analytics, content recommendations, and integrations with CRM/marketing automation.</p>
+                <span class="timeline__label">GovTech · 2023</span>
+                <h3>Мониторинг гуманитарной миссии</h3>
+                <p>Интегрировали спутниковые данные и радиоперехваты, синхронизировали штабы с визуализацией перемещения ресурсов.</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="team" class="section">
+          <div class="container">
+            <div class="section__header">
+              <h2>Команда экспертов</h2>
+              <p>Консультанты с опытом OSINT, кибербезопасности, журналистики и кризисных коммуникаций.</p>
+            </div>
+            <div class="grid grid--cards team-grid">
+              <article class="card card--profile">
+                <h3>Ирина Коваленко</h3>
+                <p class="card__role">Руководитель аналитики</p>
+                <p>Бывший аналитик Europol, специализируется на расследовании финансовых преступлений и санкционных рисков.</p>
+              </article>
+              <article class="card card--profile">
+                <h3>Марк Лебедев</h3>
+                <p class="card__role">Head of Cyber Intelligence</p>
+                <p>10+ лет в Threat Intelligence, автор методологии OSINTOps и преподаватель курса по операционной безопасности.</p>
+              </article>
+              <article class="card card--profile">
+                <h3>Лиана Шустер</h3>
+                <p class="card__role">GeoINT Специалист</p>
+                <p>Работала в геопространственных лабораториях ESA, внедряет спутниковую аналитику и компьютерное зрение.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacts" class="section section--alt">
+          <div class="container">
+            <div class="contact">
+              <div class="contact__details">
+                <h2>Свяжитесь с нами</h2>
+                <p>Запросите аудит инфраструктуры, настройку мониторинга или обучение вашей команды OSINT-практикам.</p>
+                <div class="contact__grid">
+                  <div>
+                    <h3>Email</h3>
+                    <a href="mailto:hello@osintnova.io">hello@osintnova.io</a>
+                  </div>
+                  <div>
+                    <h3>Телеграм</h3>
+                    <a href="https://t.me/osintnova" target="_blank" rel="noreferrer">@osintnova</a>
+                  </div>
+                  <div>
+                    <h3>Офис</h3>
+                    <p>Тбилиси · Вильнюс · Вена</p>
+                  </div>
+                  <div>
+                    <h3>Документы</h3>
+                    <a href="#">Политика обработки данных</a>
+                  </div>
+                </div>
+              </div>
+              <form class="contact__form" action="#" method="post">
+                <div class="form-group">
+                  <label for="name">Имя</label>
+                  <input id="name" name="name" type="text" placeholder="Иван" required />
+                </div>
+                <div class="form-group">
+                  <label for="company">Компания</label>
+                  <input id="company" name="company" type="text" placeholder="Nova Security" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="ivan@example.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Запрос</label>
+                  <textarea id="message" name="message" rows="4" placeholder="Опишите задачу и сроки"></textarea>
+                </div>
+                <button class="button button--primary" type="submit">Отправить запрос</button>
+              </form>
             </div>
           </div>
         </section>
@@ -342,17 +406,23 @@ class LessonAccessGuard {
 
       <footer class="footer">
         <div class="container footer__content">
-          <p>&copy; <span id="year"></span> Secure LMS Blueprint. All rights reserved.</p>
+          <p>© <span id="year"></span> OSINT Nova. Все права защищены.</p>
           <nav class="footer__nav">
-            <a href="#overview">Overview</a>
-            <a href="#database">Database</a>
-            <a href="#api">API</a>
-            <a href="#security">Security</a>
+            <a href="#focus">Направления</a>
+            <a href="#analytics">Аналитика</a>
+            <a href="#team">Команда</a>
+            <a href="#contacts">Контакты</a>
           </nav>
+          <div class="footer__social">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer">X / Twitter</a>
+            <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
         </div>
       </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-mlnR4EeYgyHLYBkavWgLBvAIfPE1np9Q0V5qFwWgk+dyDYuw784BVB0ZmWIg1W8x" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
   </body>
 </html>
